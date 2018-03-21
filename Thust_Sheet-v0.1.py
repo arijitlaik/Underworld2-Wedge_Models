@@ -177,7 +177,6 @@ def plotFigures(fnSize=2, figSize=(1600, 300)):
         valueRange=[1e-18, 1e-13],
         fn_mask=Model.materialField > stickyAirLayer.index,
         fn_size=fnSize)
-    FigSr.show()
     FigSr.save(Model.outputDir + '/strainRate ' + str(Model.time) + '.png')
     return
 
@@ -382,53 +381,7 @@ def SurfaceEroDepDiffusion():
     return
 
 
-Model.postSolveHook = SurfaceEroDepDiffusion
+Model.postSolveHook = SurfaceEroDepDiffusion()
 
-# In[21]:
-
-in1 = Model.add_passive_tracers(
-    name="Interfac", vertices=[gridt[0], gridt[1] - GEO.nd(750. * u.meter)])
-in2 = Model.add_passive_tracers(
-    name="Interfac",
-    vertices=[gridt[0], gridt[1] - GEO.nd(2 * 750. * u.meter)])
-in3 = Model.add_passive_tracers(
-    name="Interfac",
-    vertices=[gridt[0], gridt[1] - GEO.nd(3 * 750. * u.meter)])
-in4 = Model.add_passive_tracers(
-    name="Interfac",
-    vertices=[gridt[0], gridt[1] - GEO.nd(4 * 750. * u.meter)])
-in5 = Model.add_passive_tracers(
-    name="Interfac",
-    vertices=[gridt[0], gridt[1] - GEO.nd(5 * 750. * u.meter)])
-in6 = Model.add_passive_tracers(
-    name="Interfac",
-    vertices=[gridt[0], gridt[1] - GEO.nd(6 * 750. * u.meter)])
-in7 = Model.add_passive_tracers(
-    name="Interfac",
-    vertices=[gridt[0], gridt[1] - GEO.nd(7 * 750. * u.meter)])
-
-# In[ ]:
-
-Model.run_for(4 * u.megayears, dt=.005 * u.megayear)
-
-# In[ ]:
-
-Fig = glucifer.Figure(figsize=(1600, 300))
-topoInterface = Model.add_passive_tracers(
-    name="Interface2", vertices=[gridt[0], gridt[1]])
-Fig.Points(topoInterface.swarm, pointSize=3.0)
-Fig.Points(in2.swarm, pointSize=3.0)
-Fig.Points(in1.swarm, pointSize=3.0)
-Fig.Points(in3.swarm, pointSize=3.0)
-Fig.Points(in4.swarm, pointSize=3.0)
-Fig.Points(in5.swarm, pointSize=3.0)
-Fig.Points(in6.swarm, pointSize=3.0)
-Fig.Points(in7.swarm, pointSize=3.0)
-Fig.Points(Model.swarm, Model.materialField, fn_size=2.0)
-Fig.save(Model.outputDir + "/Materialnandpassivetracers.png")
-
-Fig.show()
-
-# In[ ]:
-
+Model.run_for(4 * u.megayears, dt=.005 * u.megayear,checkpoint_interval=.5 * u.megayear)
 plotFigures(fnSize=3)

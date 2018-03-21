@@ -355,15 +355,30 @@ def plotTopo():
 
 
 def SurfaceEroDepDiffusion():
+    
+    if comm.rank == 0:#and self.verbose:
+        purple = "\033[0;35m"
+        endcol = "\033[00m"
+        print(purple+"Processing surface with SurfaceEroDepDiffusion"+endcol)
+    
     Ks = GEO.nd(1e-20 * u.meter**2 / u.second)
+    
     SurfaceVeloEval()
     gridt[3:5, :] = comm.allreduce(gridt[3:5, :], op=MPI.SUM)
-    GEO.underworld.barrier()
-    if GEO.underworld.rank() == 0:
-        SurfaceProcess(Ks)
-    GEO.underworld.barrier()
+    
+    comm.barrier()
+    if comm.rank == 0:
+        SurfaceProcess(Ks,dt=Model._dt)
+    gridt[1,:]=comm.bcast(gridt[1,:],root=0)
+    comm.barrier()
+    
     ErosionAndSedimentation(
         airIndex=stickyAirLayer.index, sedimentIndex=plasticLayer.index)
+   
+    if comm.rank == 0:#and self.verbose:
+        purple = "\033[0;35m"
+        endcol = "\033[00m"
+        print(purple + "Processing surface with SurfaceEroDepDiffusion...Done" + endcol)
     return
 
 

@@ -225,6 +225,7 @@ def SurfaceProcess(Ks,
                    minX=GEO.nd(Model.minCoord[0]),
                    maxX=GEO.nd(Model.maxCoord[0])):
     global gridt
+    
     # refer to Collision.m in Chapter_17 of Gerya_numerical_geodynamics book
     dt = Model._dt
     # first advect topography vertically
@@ -367,7 +368,7 @@ def SurfaceEroDepDiffusion():
     
     comm.barrier()
     if comm.rank == 0:
-        SurfaceProcess(Ks,dt=Model._dt)
+        SurfaceProcess(Ks)
     gridt[1,:]=comm.bcast(gridt[1,:],root=0)
     comm.barrier()
     
@@ -381,7 +382,7 @@ def SurfaceEroDepDiffusion():
     return
 
 
-Model.postSolveHook = SurfaceEroDepDiffusion()
+Model.postSolveHook = SurfaceEroDepDiffusion
 
-Model.run_for(4 * u.megayears, dt=.005 * u.megayear,checkpoint_interval=.5 * u.megayear)
+Model.run_for(6 * u.megayears, dt=.005 * u.megayear,checkpoint_interval=.5 * u.megayear)
 plotFigures(fnSize=3)

@@ -1,0 +1,134 @@
+{
+    "Tref": "273.15 kelvin", 
+    "elementRes": "240, 30", 
+    "elementType": "Q1/dQ0", 
+    "gravity": "0.0, -9.81 meter / second ** 2", 
+    "materials": [
+        {
+            "_density": {
+                "reference_density": "0.0", 
+                "type": "ConstantDensity"
+            }, 
+            "meltFractionLimit": 1.0, 
+            "name": "Model", 
+            "viscosityChange": 1.0, 
+            "viscosityChangeX1": 0.15, 
+            "viscosityChangeX2": 0.3
+        }, 
+        {
+            "_density": {
+                "reference_density": "1.0 kilogram / meter ** 3", 
+                "type": "ConstantDensity"
+            }, 
+            "meltFractionLimit": 1.0, 
+            "name": "Sticky Air", 
+            "viscosity": {
+                "Type": "ConstantViscosity", 
+                "viscosity": "1e+18 pascal * second"
+            }, 
+            "viscosityChange": 1.0, 
+            "viscosityChangeX1": 0.15, 
+            "viscosityChangeX2": 0.3
+        }, 
+        {
+            "_density": {
+                "reference_density": "2400.0 kilogram / meter ** 3", 
+                "type": "ConstantDensity"
+            }, 
+            "meltFractionLimit": 1.0, 
+            "name": "Plastic", 
+            "plasticity": {
+                "_cohesion": "20 megapascal", 
+                "_cohesionAfterSoftening": "20 megapascal", 
+                "_frictionAfterSoftening": "0.5773502691896257", 
+                "_frictionCoefficient": "0.5773502691896257", 
+                "epsilon1": "0.5", 
+                "epsilon2": "1.0", 
+                "minimumViscosity": "None", 
+                "name": "None"
+            }, 
+            "viscosityChange": 1.0, 
+            "viscosityChangeX1": 0.15, 
+            "viscosityChangeX2": 0.3
+        }, 
+        {
+            "_density": {
+                "reference_density": "2400.0 kilogram / meter ** 3", 
+                "type": "ConstantDensity"
+            }, 
+            "meltFractionLimit": 1.0, 
+            "name": "Decol", 
+            "plasticity": {
+                "_cohesion": "0.1 megapascal", 
+                "_cohesionAfterSoftening": "0.1 megapascal", 
+                "_frictionAfterSoftening": "0.4663076581549986", 
+                "_frictionCoefficient": "0.4663076581549986", 
+                "epsilon1": "0.5", 
+                "epsilon2": "1.0", 
+                "minimumViscosity": "None", 
+                "name": "None"
+            }, 
+            "viscosityChange": 1.0, 
+            "viscosityChangeX1": 0.15, 
+            "viscosityChangeX2": 0.3
+        }, 
+        {
+            "_density": {
+                "reference_density": "2400.0 kilogram / meter ** 3", 
+                "type": "ConstantDensity"
+            }, 
+            "meltFractionLimit": 1.0, 
+            "name": "Ridid Base Layer", 
+            "viscosity": {
+                "Type": "ConstantViscosity", 
+                "viscosity": "1e+23 pascal * second"
+            }, 
+            "viscosityChange": 1.0, 
+            "viscosityChangeX1": 0.15, 
+            "viscosityChangeX2": 0.3
+        }, 
+        {
+            "_density": {
+                "reference_density": "2400.0 kilogram / meter ** 3", 
+                "type": "ConstantDensity"
+            }, 
+            "meltFractionLimit": 1.0, 
+            "name": "Sediment", 
+            "plasticity": {
+                "_cohesion": "20 megapascal", 
+                "_cohesionAfterSoftening": "20 megapascal", 
+                "_frictionAfterSoftening": "0.5773502691896257", 
+                "_frictionCoefficient": "0.5773502691896257", 
+                "epsilon1": "0.5", 
+                "epsilon2": "1.0", 
+                "minimumViscosity": "None", 
+                "name": "None"
+            }, 
+            "viscosity": {
+                "Type": "ConstantViscosity", 
+                "viscosity": "1e+22 pascal * second"
+            }, 
+            "viscosityChange": 1.0, 
+            "viscosityChangeX1": 0.15, 
+            "viscosityChangeX2": 0.3
+        }
+    ], 
+    "maxCoord": "120.0 kilometer, 9.0 kilometer", 
+    "minCoord": "0.0 kilometer, -6.0 kilometer", 
+    "name": "Model", 
+    "periodic": "False, False", 
+    "rcParams": "### MATPLOTLIBRC FORMAT\n\n# This is a sample UWGeodynamics configuration file - you can find a copy\n# of it on your system in\n# site-packages/uwgeodynamics/uwgeo-data/uwgeodynamicsrc.  If you edit it\n# there, please note that it will be overwritten in your next install.\n# If you want to keep a permanent local copy that will not be\n# overwritten, place it in the following location:\n# unix/linux:\n#     $HOME/.config/uwgeodynamics/uwgeodynamicsrc or\n#     $XDG_CONFIG_HOME/uwgeodynamics/uwgeodynamicsrc (if $XDG_CONFIG_HOME is set)\n# other platforms:\n#     $HOME/.uwgeodynamics/uwgeodynamicsrc\n\n#### CONFIGURATION BEGINS HERE\n\n# Name of the model output directory\n#\n#output.directory : outputs\n#\n#\n# Gravitational acceleration\n#gravity : 9.81 meter / u.second**2\n#\n# Range of viscosities\n#minimum.viscosity : 1e19 pascal * u.second\n#maximum.viscosity : 1e25 pascal * second\n#\n# List of swarm variables\n#swarm.variables  :  materialField ,  plasticStrain ,  viscosityField ,  densityField \n\n# List of mesh variables\n#mesh.variables  :   velocityField ,  temperature ,  pressureField ,  strainRateField ,  projMaterialField ,  projViscosityField ,  projPlasticStrain ,  projDensityField \n\n# List of fields to output\n#default.outputs  :  materialField ,  temperature ,  pressureField ,  plasticStrain ,  velocityField \n#\n# List of default glucifer outputs\n#glucifer.outputs  :  materialField ,  temperature ,  pressureField ,  plasticStrain ,  velocityField \n#\n# swarm-layout number of particle per cell\n#swarm.particles.per.cell : 50\n#\n# population control parameters\n#popcontrol.aggressive  : True\n#popcontrol.split.threshold  : 0.15\n#popcontrol.max.splits  : 10\n#popcontrol.particles.per.cell  : 50\n#\n# CFL condition\n# CFL : 0.1\n# Solver configuration\n#solver  : mg\n#penalty  : 0.0\n#nonlinear.tolerance : 1e-2\n#maximum.timestep  : 200000\n#nonlinear.min.iterations : 3\n#nonlinear.max.iterations : 500\n#\n# Scaling coefficients\n#scaling.length : 1.0 meter\n#scaling.mass : 1.0 kilogram\n#scaling.time : 1.0 second\n#scaling.temperature : 1.0 u.degK\n#scaling.substance : 1.0 u.mole\n#\n# Common field units\n#velocity.units  : centimeter / year\n#temperature.units    : degK\n#pressure.units  : pascal\n#strain.rate  : 1.0 / second\n#viscosity.units : pascal * second\n#density.units : kilogram / meter**3\n#\n# Output field units\n#viscosityField  : pascal * second\n#densityField  : kilogram / metre**3\n#velocityField  : centimeter / u.year\n#temperature  : degK\n#pressureField  : pascal\n#strainRateField  : 1.0 / second\n#projViscosityField   : pascal * second\n#projDensityField  : kilogram / u.metre**3\n", 
+    "scaling": {
+        "[length]": "120000.0 meter", 
+        "[mass]": "4.86177230597e+43 kilogram", 
+        "[substance]": "1.0 mole", 
+        "[temperature]": "1.0 kelvin", 
+        "[time]": "3.78683111696e+14 second"
+    }, 
+    "velocityBCs": {
+        "bottom": "-1.0 centimeter / year, 0.0", 
+        "left": "[(<underworld.function._function.less_equal object at 0x7ffa88433a50>, -1.0), (True, 0.0)], 0.0", 
+        "right": "-1.0 centimeter / year, None", 
+        "top": "None, None"
+    }
+}

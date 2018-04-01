@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<Xdmf xmlns:xi="http://www.w3.org/2001/XInclude" Version="2.0">
+<Domain>
+<Grid Name="swarm" GridType="Uniform">
+
+	<Time Value="0.005" />
+
+	<Topology Type="POLYVERTEX" NodesPerElement="143937"> </Topology>
+		<Geometry Type="XY">
+			<DataItem Format="HDF" NumberType="Float" Precision="8" Dimensions="143937 2">swarm-0.h5:/data</DataItem>
+		</Geometry>
+	<Attribute Type="Scalar" Center="Node" Name="viscosityField">
+			<DataItem Format="HDF" NumberType="Float" Precision="8" Dimensions="143937 1">viscosityField-0.h5:/data</DataItem>
+	</Attribute>
+</Grid>
+</Domain>
+</Xdmf>
